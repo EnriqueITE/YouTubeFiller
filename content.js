@@ -19,7 +19,7 @@
   }
 
   function isWatchPage() {
-    return window.location.hostname === "www.youtube.com" && window.location.pathname === "/watch";
+    return ["www.youtube.com", "youtube.com"].includes(window.location.hostname) && window.location.pathname === "/watch";
   }
 
   function isActive() {
