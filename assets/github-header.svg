@@ -1,3 +1,13 @@
+<!--
+  YouTube Filler
+  Copyright (C) 2026 Enrique Serrano Aparicio
+
+  This program comes with ABSOLUTELY NO WARRANTY.
+  This is free software, and you are welcome to redistribute it
+  under certain conditions; see LICENSE for details.
+
+  SPDX-License-Identifier: GPL-3.0-only
+-->
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-label="YouTube Filler">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">

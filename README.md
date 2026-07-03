@@ -38,7 +38,7 @@ After changing files, reload the extension from `chrome://extensions` or `brave:
 
 ## Build a Store Package
 
-This extension has no build step and no external dependencies. The store package includes only runtime extension files required by Chromium.
+This extension has no build step and no external dependencies. GitHub contains the source only; compiled ZIP packages are generated locally for store submission and are not committed.
 
 A PowerShell helper is included:
 
@@ -72,4 +72,6 @@ Enrique Serrano Aparicio
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE).
+YouTube Filler is free software licensed under the GNU General Public License v3.0 only. See [LICENSE](LICENSE).
+
+Copyright (C) 2026 Enrique Serrano Aparicio. This program comes with ABSOLUTELY NO WARRANTY. You are welcome to redistribute it under the conditions of the GNU GPL v3.0.

@@ -1,3 +1,13 @@
+/*
+ * YouTube Filler
+ * Copyright (C) 2026 Enrique Serrano Aparicio
+ *
+ * This program comes with ABSOLUTELY NO WARRANTY.
+ * This is free software, and you are welcome to redistribute it
+ * under certain conditions; see LICENSE for details.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 function sendToggleMessage(tab) {
   if (!tab || typeof tab.id !== "number") {
     return;

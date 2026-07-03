@@ -4,6 +4,8 @@
 
 - Kept public author/contact/support details while removing local machine paths from packaged output.
 - Updated the Chrome Web Store package script to include only runtime extension files.
+- Added GPL-3.0-only copyright notices to source files.
+- Removed the Chrome Web Store listing draft from the public source tree.
 
 ## 0.4.5 - 2026-07-03
 
