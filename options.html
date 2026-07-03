@@ -31,11 +31,12 @@
     <section class="setting">
       <label for="shortcut-display" data-i18n="shortcutLabel">Shortcut inside YouTube</label>
       <div class="shortcut-row">
-        <input id="shortcut-display" type="text" readonly aria-describedby="shortcut-help">
+        <input id="shortcut-display" type="text" readonly aria-describedby="shortcut-help shortcut-global-help">
         <button id="record-shortcut" type="button" data-i18n="recordButton">Record</button>
         <button id="clear-shortcut" type="button" class="secondary" data-i18n="clearButton">Reset</button>
       </div>
-      <p id="shortcut-help" data-i18n="shortcutHelp">In-page shortcut: º by default, intended for Spanish keyboards where the key is to the left of 1. If you use another keyboard layout, record a different shortcut here. This shortcut only works when the YouTube tab has focus. To use a shortcut from other apps, set the native browser command to Global in chrome://extensions/shortcuts or brave://extensions/shortcuts.</p>
+      <p id="shortcut-help" data-i18n="shortcutHelp">Default: º, the key left of 1 on Spanish keyboards. On other layouts, record a shortcut here.</p>
+      <p id="shortcut-global-help" class="help-secondary" data-i18n="shortcutGlobalHelp">Works only while the YouTube tab has focus. For a system-wide shortcut, set the browser command to Global in chrome://extensions/shortcuts or brave://extensions/shortcuts.</p>
       <p id="status" role="status" aria-live="polite"></p>
     </section>
 

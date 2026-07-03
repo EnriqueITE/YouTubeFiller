@@ -133,6 +133,10 @@ p {
   margin: 10px 0 0;
 }
 
+.help-secondary {
+  margin-top: 5px;
+}
+
 #status {
   color: rgba(255, 255, 255, 0.82);
   min-height: 17px;

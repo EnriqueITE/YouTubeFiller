@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.9 - 2026-07-03
+
+- Split the popup shortcut help into shorter, clearer lines.
+
 ## 0.4.8 - 2026-07-03
 
 - Clarified that the default in-page shortcut is intended for Spanish keyboards and can be changed for other layouts.
