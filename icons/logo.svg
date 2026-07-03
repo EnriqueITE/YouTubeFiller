@@ -1,10 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="YouTube Filler logo">
-  <rect x="8" y="8" width="112" height="112" rx="24" fill="#FF0033"/>
-  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="10" transform="translate(64 64)">
-    <path d="M-10 -10L-34 -34"/><path d="M-34 -34H-17"/><path d="M-34 -34v17"/>
-    <path d="M10 -10L34 -34"/><path d="M34 -34H17"/><path d="M34 -34v17"/>
-    <path d="M-10 10L-34 34"/><path d="M-34 34H-17"/><path d="M-34 34V17"/>
-    <path d="M10 10L34 34"/><path d="M34 34H17"/><path d="M34 34V17"/>
-  </g>
-  <rect x="8" y="8" width="112" height="112" rx="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="YouTube Filler logo">
+  <defs>
+    <linearGradient id="red" x1="18" y1="12" x2="110" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF1744"/>
+      <stop offset="1" stop-color="#D50000"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#red)"/>
+  <path d="M39 38h50c10 0 16 6 16 16v20c0 10-6 16-16 16H39c-10 0-16-6-16-16V54c0-10 6-16 16-16Z" fill="#B50000" opacity="0.28"/>
+  <path d="M55 49v30l27-15-27-15Z" fill="#FFFFFF"/>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.5">
+    <path d="M43 45 29 31"/><path d="M29 31h14"/><path d="M29 31v14"/>
+    <path d="M85 45 99 31"/><path d="M99 31H85"/><path d="M99 31v14"/>
+    <path d="M43 83 29 97"/><path d="M29 97h14"/><path d="M29 97V83"/>
+    <path d="M85 83 99 97"/><path d="M99 97H85"/><path d="M99 97V83"/>
+  </g>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2"/>
+</svg>
