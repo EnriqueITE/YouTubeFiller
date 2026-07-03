@@ -1,0 +1,161 @@
+.yt-window-cover-button {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  height: 48px !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+  opacity: 0.9;
+  outline: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  vertical-align: top !important;
+  visibility: visible !important;
+  width: 48px !important;
+}
+
+.yt-window-cover-button:hover,
+.yt-window-cover-button:focus,
+.yt-window-cover-button:active,
+.yt-window-cover-button[aria-pressed="true"] {
+  opacity: 1;
+}
+
+.yt-window-cover-button .yt-window-cover-glyph {
+  display: block;
+  height: 30px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: calc(50% - 1px);
+  transform: translate(-50%, -50%);
+  width: 30px;
+}
+
+.yt-window-cover-icon {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.25;
+}
+
+html.yt-window-cover-active,
+html.yt-window-cover-active body {
+  overflow: hidden !important;
+}
+html.yt-window-cover-active,
+html.yt-window-cover-active body,
+html.yt-window-cover-active ytd-app,
+html.yt-window-cover-active #page-manager,
+html.yt-window-cover-active ytd-watch-flexy {
+  background: #000 !important;
+}
+
+html.yt-window-cover-active ytd-masthead,
+html.yt-window-cover-active #secondary,
+html.yt-window-cover-active #secondary-inner,
+html.yt-window-cover-active #columns #secondary,
+html.yt-window-cover-active ytd-watch-next-secondary-results-renderer,
+html.yt-window-cover-active ytd-playlist-panel-renderer,
+html.yt-window-cover-active ytd-engagement-panel-section-list-renderer,
+html.yt-window-cover-active #below,
+html.yt-window-cover-active #clarify-box,
+html.yt-window-cover-active #related,
+html.yt-window-cover-active ytd-comments,
+html.yt-window-cover-active ytd-merch-shelf-renderer,
+html.yt-window-cover-active ytd-reel-shelf-renderer,
+html.yt-window-cover-active ytd-rich-grid-renderer {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+html.yt-window-cover-active #primary,
+html.yt-window-cover-active #primary-inner,
+html.yt-window-cover-active #player,
+html.yt-window-cover-active #player-container,
+html.yt-window-cover-active #player-container-inner,
+html.yt-window-cover-active #movie_player,
+html.yt-window-cover-active .html5-video-player {
+  max-height: none !important;
+  max-width: none !important;
+}
+
+
+html.yt-window-cover-active #movie_player,
+html.yt-window-cover-active .html5-video-player.yt-window-cover-player {
+  background: #000 !important;
+  bottom: auto !important;
+  height: 100vh !important;
+  left: 0 !important;
+  margin: 0 !important;
+  max-height: none !important;
+  max-width: none !important;
+  min-height: 100vh !important;
+  min-width: 100vw !important;
+  position: fixed !important;
+  right: auto !important;
+  top: 0 !important;
+  transform: none !important;
+  width: 100vw !important;
+  z-index: 2147483646 !important;
+}
+
+html.yt-window-cover-active #movie_player .html5-video-container,
+html.yt-window-cover-active .html5-video-player.yt-window-cover-player .html5-video-container {
+  bottom: 0 !important;
+  height: 100% !important;
+  left: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  width: 100% !important;
+}
+
+html.yt-window-cover-active #movie_player video.html5-main-video,
+html.yt-window-cover-active video.html5-main-video.yt-window-cover-video {
+  bottom: auto !important;
+  height: 100% !important;
+  left: 0 !important;
+  margin: 0 !important;
+  max-height: none !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  position: absolute !important;
+  right: auto !important;
+  top: 0 !important;
+  transform: none !important;
+  width: 100% !important;
+}
+
+html.yt-window-cover-active #movie_player .ytp-chrome-bottom,
+html.yt-window-cover-active .html5-video-player.yt-window-cover-player .ytp-chrome-bottom {
+  bottom: 0 !important;
+  left: 12px !important;
+  right: 12px !important;
+  width: auto !important;
+}
+
+html.yt-window-cover-active #movie_player .ytp-chrome-top,
+html.yt-window-cover-active .html5-video-player.yt-window-cover-player .ytp-chrome-top,
+html.yt-window-cover-active #movie_player .ytp-gradient-bottom,
+html.yt-window-cover-active .html5-video-player.yt-window-cover-player .ytp-gradient-bottom,
+html.yt-window-cover-active #movie_player .ytp-gradient-top,
+html.yt-window-cover-active .html5-video-player.yt-window-cover-player .ytp-gradient-top {
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+}
+
+html.yt-window-cover-active #movie_player .ytp-caption-window-container,
+html.yt-window-cover-active .html5-video-player.yt-window-cover-player .ytp-caption-window-container {
+  height: 100% !important;
+  width: 100% !important;
+}

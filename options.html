@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Filler</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="panel">
+    <header class="header">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 36 36" focusable="false">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" transform="translate(18 18)">
+            <path d="M-3 -3L-10.5 -10.5"></path><path d="M-10.5 -10.5H-5.2"></path><path d="M-10.5 -10.5v5.3"></path>
+            <path d="M3 -3L10.5 -10.5"></path><path d="M10.5 -10.5H5.2"></path><path d="M10.5 -10.5v5.3"></path>
+            <path d="M-3 3L-10.5 10.5"></path><path d="M-10.5 10.5H-5.2"></path><path d="M-10.5 10.5V5.2"></path>
+            <path d="M3 3L10.5 10.5"></path><path d="M10.5 10.5H5.2"></path><path d="M10.5 10.5V5.2"></path>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <h1 data-i18n="optionsTitle">YouTube Filler</h1>
+        <p class="tagline" data-i18n="optionsTagline">Centered cover mode for YouTube videos.</p>
+      </div>
+    </header>
+
+    <section class="setting">
+      <label for="shortcut-display" data-i18n="shortcutLabel">Shortcut inside YouTube</label>
+      <div class="shortcut-row">
+        <input id="shortcut-display" type="text" readonly aria-describedby="shortcut-help">
+        <button id="record-shortcut" type="button" data-i18n="recordButton">Record</button>
+        <button id="clear-shortcut" type="button" class="secondary" data-i18n="clearButton">Reset</button>
+      </div>
+      <p id="shortcut-help" data-i18n="shortcutHelp">Default shortcut: º. This shortcut only works when the YouTube tab has focus. To use a shortcut from other apps, set the native browser command to Global in chrome://extensions/shortcuts or brave://extensions/shortcuts.</p>
+      <p id="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <footer class="footer">
+      <a href="https://buymeacoffee.com/enriqueite" target="_blank" rel="noopener noreferrer" data-i18n="coffeeLink">Buy me a coffee</a>
+    </footer>
+  </main>
+
+  <script src="options.js"></script>
+</body>
+</html>

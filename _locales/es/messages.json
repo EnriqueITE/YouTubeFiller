@@ -1,0 +1,67 @@
+{
+  "extensionName": {
+    "message": "YouTube Filler"
+  },
+  "extensionDescription": {
+    "message": "Haz que YouTube rellene la pestaña con un recorte centrado manteniendo visible la interfaz del navegador."
+  },
+  "extensionActionTitle": {
+    "message": "Configuración de YouTube Filler"
+  },
+  "commandToggleDescription": {
+    "message": "Alternar YouTube Filler"
+  },
+  "buttonRestore": {
+    "message": "Restaurar YouTube"
+  },
+  "buttonFill": {
+    "message": "Rellenar ventana"
+  },
+  "optionsTitle": {
+    "message": "YouTube Filler"
+  },
+  "optionsTagline": {
+    "message": "Modo cover centrado para vídeos de YouTube."
+  },
+  "shortcutLabel": {
+    "message": "Atajo dentro de YouTube"
+  },
+  "recordButton": {
+    "message": "Grabar"
+  },
+  "recordingButton": {
+    "message": "Pulsa las teclas"
+  },
+  "clearButton": {
+    "message": "Restablecer"
+  },
+  "shortcutHelp": {
+    "message": "Atajo por defecto: º. Este atajo solo funciona cuando la pestaña de YouTube tiene foco. Para usar un atajo desde otras apps, configura el comando nativo del navegador como Global en chrome://extensions/shortcuts o brave://extensions/shortcuts."
+  },
+  "unconfigured": {
+    "message": "Por defecto"
+  },
+  "statusWaiting": {
+    "message": "Esperando teclas..."
+  },
+  "statusSaved": {
+    "message": "Guardado: $SHORTCUT$",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCleared": {
+    "message": "Atajo restablecido al valor por defecto."
+  },
+  "statusCancelled": {
+    "message": "Grabación cancelada."
+  },
+  "statusInvalid": {
+    "message": "Pulsa una tecla normal o una combinación con Ctrl, Alt o Shift."
+  },
+  "coffeeLink": {
+    "message": "Invítame a un café"
+  }
+}

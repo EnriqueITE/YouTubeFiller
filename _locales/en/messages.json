@@ -1,0 +1,67 @@
+{
+  "extensionName": {
+    "message": "YouTube Filler"
+  },
+  "extensionDescription": {
+    "message": "Fill the YouTube tab with a centered cover crop while keeping the browser chrome visible."
+  },
+  "extensionActionTitle": {
+    "message": "YouTube Filler settings"
+  },
+  "commandToggleDescription": {
+    "message": "Toggle YouTube Filler"
+  },
+  "buttonRestore": {
+    "message": "Restore YouTube"
+  },
+  "buttonFill": {
+    "message": "Fill window"
+  },
+  "optionsTitle": {
+    "message": "YouTube Filler"
+  },
+  "optionsTagline": {
+    "message": "Centered cover mode for YouTube videos."
+  },
+  "shortcutLabel": {
+    "message": "Shortcut inside YouTube"
+  },
+  "recordButton": {
+    "message": "Record"
+  },
+  "recordingButton": {
+    "message": "Press keys"
+  },
+  "clearButton": {
+    "message": "Reset"
+  },
+  "shortcutHelp": {
+    "message": "Default shortcut: º. This shortcut only works when the YouTube tab has focus. To use a shortcut from other apps, set the native browser command to Global in chrome://extensions/shortcuts or brave://extensions/shortcuts."
+  },
+  "unconfigured": {
+    "message": "Default"
+  },
+  "statusWaiting": {
+    "message": "Waiting for keys..."
+  },
+  "statusSaved": {
+    "message": "Saved: $SHORTCUT$",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusCleared": {
+    "message": "Shortcut reset to default."
+  },
+  "statusCancelled": {
+    "message": "Recording cancelled."
+  },
+  "statusInvalid": {
+    "message": "Press a normal key or a combination with Ctrl, Alt or Shift."
+  },
+  "coffeeLink": {
+    "message": "Buy me a coffee"
+  }
+}
