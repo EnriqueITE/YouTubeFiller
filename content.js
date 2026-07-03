@@ -11,11 +11,15 @@
   let customShortcut = DEFAULT_CUSTOM_SHORTCUT;
 
   function text(messageName, fallback, substitutions) {
-    if (typeof chrome === "undefined" || !chrome.i18n || !chrome.i18n.getMessage) {
+    try {
+      if (typeof chrome === "undefined" || !chrome.i18n || !chrome.i18n.getMessage) {
+        return fallback;
+      }
+
+      return chrome.i18n.getMessage(messageName, substitutions) || fallback;
+    } catch (_error) {
       return fallback;
     }
-
-    return chrome.i18n.getMessage(messageName, substitutions) || fallback;
   }
 
   function isYouTubeHost() {
@@ -258,7 +262,8 @@
     }
 
     syncQueued = true;
-    window.requestAnimationFrame(() => {
+    const schedule = window.requestAnimationFrame || ((callback) => window.setTimeout(callback, 16));
+    schedule(() => {
       syncQueued = false;
       syncWithPage();
     });
@@ -357,38 +362,53 @@
   }
 
   function loadSettings() {
-    if (typeof chrome === "undefined" || !chrome.storage || !chrome.storage.sync) {
-      return;
-    }
-
-    chrome.storage.sync.get({ [STORAGE_KEY]: DEFAULT_CUSTOM_SHORTCUT }, (items) => {
-      customShortcut = String(items[STORAGE_KEY] || DEFAULT_CUSTOM_SHORTCUT);
-      setButtonState(isActive());
-    });
-
-    chrome.storage.onChanged.addListener((changes, areaName) => {
-      if (areaName !== "sync" || !changes[STORAGE_KEY]) {
+    try {
+      if (typeof chrome === "undefined" || !chrome.storage || !chrome.storage.sync) {
         return;
       }
 
-      customShortcut = String(changes[STORAGE_KEY].newValue || DEFAULT_CUSTOM_SHORTCUT);
-      setButtonState(isActive());
-    });
+      chrome.storage.sync.get({ [STORAGE_KEY]: DEFAULT_CUSTOM_SHORTCUT }, (items) => {
+        customShortcut = String(items && items[STORAGE_KEY] || DEFAULT_CUSTOM_SHORTCUT);
+        setButtonState(isActive());
+      });
+
+      if (chrome.storage.onChanged && chrome.storage.onChanged.addListener) {
+        chrome.storage.onChanged.addListener((changes, areaName) => {
+          if (areaName !== "sync" || !changes[STORAGE_KEY]) {
+            return;
+          }
+
+          customShortcut = String(changes[STORAGE_KEY].newValue || DEFAULT_CUSTOM_SHORTCUT);
+          setButtonState(isActive());
+        });
+      }
+    } catch (_error) {
+      customShortcut = DEFAULT_CUSTOM_SHORTCUT;
+    }
   }
 
-  if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.onMessage) {
-    chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-      if (!message || message.type !== TOGGLE_MESSAGE) {
-        return false;
+  function listenForRuntimeMessages() {
+    try {
+      if (typeof chrome === "undefined" || !chrome.runtime || !chrome.runtime.onMessage) {
+        return;
       }
 
-      const active = toggleCoverMode();
-      sendResponse({ active, handled: isWatchPage() });
-      return false;
-    });
+      chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+        if (!message || message.type !== TOGGLE_MESSAGE) {
+          return false;
+        }
+
+        const active = toggleCoverMode();
+        sendResponse({ active, handled: isWatchPage() });
+        return false;
+      });
+    } catch (_error) {
+      // The extension context can be invalidated while YouTube tabs from an older load are still open.
+    }
   }
 
   loadSettings();
+  listenForRuntimeMessages();
 
   document.addEventListener("keydown", handleKeydown, true);
   document.addEventListener("yt-navigate-finish", queueSync);
@@ -396,12 +416,15 @@
   window.addEventListener("popstate", queueSync);
   window.addEventListener("pageshow", queueSync);
 
-  const observer = new MutationObserver(queueSync);
-
   function startObserver() {
+    if (typeof MutationObserver === "undefined") {
+      return;
+    }
+
     const observerTarget = document.documentElement || document.body;
 
     if (observerTarget) {
+      const observer = new MutationObserver(queueSync);
       observer.observe(observerTarget, { childList: true, subtree: true });
     }
   }

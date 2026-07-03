@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.5 - 2026-07-03
+
+- Made content script startup resilient to invalidated extension contexts during reloads.
+- Added safer fallbacks around extension APIs and page scheduling.
+
 ## 0.4.4 - 2026-07-03
 
 - Hardened startup checks around the document root element.
