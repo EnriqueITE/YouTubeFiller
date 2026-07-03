@@ -36,7 +36,7 @@
     "message": "Reset"
   },
   "shortcutHelp": {
-    "message": "Default shortcut: º. This shortcut only works when the YouTube tab has focus. To use a shortcut from other apps, set the native browser command to Global in chrome://extensions/shortcuts or brave://extensions/shortcuts."
+    "message": "In-page shortcut: º by default, intended for Spanish keyboards where the key is to the left of 1. If you use another keyboard layout, record a different shortcut here. This shortcut only works when the YouTube tab has focus. To use a shortcut from other apps, set the native browser command to Global in chrome://extensions/shortcuts or brave://extensions/shortcuts."
   },
   "unconfigured": {
     "message": "Default"

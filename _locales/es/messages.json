@@ -36,7 +36,7 @@
     "message": "Restablecer"
   },
   "shortcutHelp": {
-    "message": "Atajo por defecto: º. Este atajo solo funciona cuando la pestaña de YouTube tiene foco. Para usar un atajo desde otras apps, configura el comando nativo del navegador como Global en chrome://extensions/shortcuts o brave://extensions/shortcuts."
+    "message": "Atajo dentro de YouTube: º por defecto, pensado para teclados españoles donde la tecla está a la izquierda del 1. Si usas otra distribución de teclado, graba otro atajo aquí. Este atajo solo funciona cuando la pestaña de YouTube tiene foco. Para usar un atajo desde otras apps, configura el comando nativo del navegador como Global en chrome://extensions/shortcuts o brave://extensions/shortcuts."
   },
   "unconfigured": {
     "message": "Por defecto"

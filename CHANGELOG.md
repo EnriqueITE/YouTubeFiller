@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.8 - 2026-07-03
+
+- Clarified that the default in-page shortcut is intended for Spanish keyboards and can be changed for other layouts.
+
 ## 0.4.7 - 2026-07-03
 
 - Refreshed YouTube layout after exiting cover mode to prevent shifted player placement.

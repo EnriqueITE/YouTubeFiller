@@ -19,7 +19,7 @@ The extension only runs on normal YouTube watch pages at `youtube.com/watch` and
 
 ## Shortcuts
 
-- In-page shortcut: `º` by default, intended for Spanish keyboards where the key is to the left of `1`.
+- In-page shortcut: `º` by default, intended for Spanish keyboards where the key is to the left of `1`. If you use another keyboard layout, record a different in-page shortcut from the extension popup.
 - Native browser command: `Alt+Shift+V` by default.
 - Exit shortcut: `Escape` while YouTube Filler is active and the browser is not in real fullscreen.
 
