@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.4 - 2026-07-03
+
+- Hardened startup checks around the document root element.
+- Fixed the popup fallback text for the default `º` shortcut.
+- Kept YouTube host access limited to HTTPS on `youtube.com` and `www.youtube.com`.
+
 ## 0.4.3 - 2026-07-03
 
 - Updated public GitHub documentation to English (US) only.

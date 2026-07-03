@@ -18,12 +18,21 @@
     return chrome.i18n.getMessage(messageName, substitutions) || fallback;
   }
 
+  function isYouTubeHost() {
+    return ["www.youtube.com", "youtube.com"].includes(window.location.hostname);
+  }
+
+  function getRootElement() {
+    return document.documentElement;
+  }
+
   function isWatchPage() {
-    return ["www.youtube.com", "youtube.com"].includes(window.location.hostname) && window.location.pathname === "/watch";
+    return isYouTubeHost() && window.location.pathname === "/watch";
   }
 
   function isActive() {
-    return document.documentElement.classList.contains(ACTIVE_CLASS);
+    const root = getRootElement();
+    return Boolean(root && root.classList.contains(ACTIVE_CLASS));
   }
 
   function getPlayer() {
@@ -100,14 +109,25 @@
       return false;
     }
 
+    const root = getRootElement();
+
+    if (!root) {
+      return false;
+    }
+
     markActiveElements();
-    document.documentElement.classList.add(ACTIVE_CLASS);
+    root.classList.add(ACTIVE_CLASS);
     setButtonState(true);
     return true;
   }
 
   function disableCoverMode() {
-    document.documentElement.classList.remove(ACTIVE_CLASS);
+    const root = getRootElement();
+
+    if (root) {
+      root.classList.remove(ACTIVE_CLASS);
+    }
+
     unmarkActiveElements();
     setButtonState(false);
   }
@@ -376,13 +396,17 @@
   window.addEventListener("popstate", queueSync);
   window.addEventListener("pageshow", queueSync);
 
-  const observerTarget = document.documentElement || document.body;
   const observer = new MutationObserver(queueSync);
 
-  if (observerTarget) {
-    observer.observe(observerTarget, { childList: true, subtree: true });
+  function startObserver() {
+    const observerTarget = document.documentElement || document.body;
+
+    if (observerTarget) {
+      observer.observe(observerTarget, { childList: true, subtree: true });
+    }
   }
 
+  startObserver();
   syncWithPage();
   window.setTimeout(queueSync, 500);
   window.setTimeout(queueSync, 1500);
