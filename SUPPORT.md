@@ -12,4 +12,6 @@ When reporting a problem, include:
 - What happened instead.
 - A screenshot if the issue is visual.
 
+Contact: hello@enriqueite.com
+
 Optional support link: https://buymeacoffee.com/enriqueite

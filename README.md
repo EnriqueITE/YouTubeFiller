@@ -38,7 +38,7 @@ After changing files, reload the extension from `chrome://extensions` or `brave:
 
 ## Build a Store Package
 
-This extension has no build step and no external dependencies. To package it manually, zip the extension files while excluding git metadata and local temporary files.
+This extension has no build step and no external dependencies. The store package includes only runtime extension files required by Chromium.
 
 A PowerShell helper is included:
 
@@ -62,7 +62,13 @@ See [PRIVACY.md](PRIVACY.md) for the full privacy policy.
 
 ## Support
 
-Issues and feature requests are handled through GitHub Issues. A small support link is also shown in the extension popup: [Buy me a coffee](https://buymeacoffee.com/enriqueite).
+Issues and feature requests are handled through GitHub Issues. The extension popup also includes an optional support link: [Buy me a coffee](https://buymeacoffee.com/enriqueite).
+
+Contact: hello@enriqueite.com
+
+## Author
+
+Enrique Serrano Aparicio
 
 ## License
 

@@ -26,4 +26,8 @@ Privacy:
 
 YouTube Filler does not collect analytics, browsing history, YouTube account data or video information. It stores only the custom shortcut preference in browser extension storage.
 
+Developer/author: Enrique Serrano Aparicio
+
+Contact email: hello@enriqueite.com
+
 Optional support link: https://buymeacoffee.com/enriqueite

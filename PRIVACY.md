@@ -24,9 +24,7 @@ The extension developer does not receive this setting.
 
 ## Network Requests
 
-YouTube Filler does not make network requests to external servers. It only modifies the local YouTube page while you are watching a normal YouTube video.
-
-The popup includes an optional external support link to Buy Me a Coffee. Opening that link is a user-initiated action and leaves the extension.
+YouTube Filler does not make network requests to external servers. It only modifies the local YouTube page while you are watching a normal YouTube video. The popup includes an optional external support link to Buy Me a Coffee. Opening that link is a user-initiated action and leaves the extension.
 
 ## Permissions
 
@@ -34,10 +32,10 @@ The popup includes an optional external support link to Buy Me a Coffee. Opening
 - `activeTab`: lets the native browser command send the toggle message to the active YouTube tab.
 - `https://www.youtube.com/*` and `https://youtube.com/*`: inject the button and styles on YouTube pages, with a runtime guard so the feature only activates on normal `/watch` pages.
 
+## Contact
+
+For privacy questions, contact hello@enriqueite.com.
+
 ## Changes
 
 Privacy policy updates will be published in this repository.
-
-## Contact
-
-For questions, open an issue in the GitHub repository.

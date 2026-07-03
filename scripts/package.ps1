@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 $manifest = Get-Content -Raw -Path (Join-Path $root 'manifest.json') | ConvertFrom-Json
 $dist = Join-Path $root 'dist'
-$packageName = "youtube-filler-$($manifest.version).zip"
+$packageName = "youtube-filler-$($manifest.version)-chrome-web-store.zip"
 $packagePath = Join-Path $dist $packageName
 
 New-Item -ItemType Directory -Force -Path $dist | Out-Null
@@ -20,10 +20,7 @@ $include = @(
   'options.css',
   'options.js',
   '_locales',
-  'icons',
-  'README.md',
-  'PRIVACY.md',
-  'LICENSE'
+  'icons'
 )
 
 $temp = Join-Path $env:TEMP ("youtube-filler-package-" + [guid]::NewGuid().ToString('N'))

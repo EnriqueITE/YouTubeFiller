@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.6 - 2026-07-03
+
+- Kept public author/contact/support details while removing local machine paths from packaged output.
+- Updated the Chrome Web Store package script to include only runtime extension files.
+
 ## 0.4.5 - 2026-07-03
 
 - Made content script startup resilient to invalidated extension contexts during reloads.
