@@ -28,7 +28,9 @@ $include = @(
   'options.css',
   'options.js',
   '_locales',
-  'icons'
+  'icons',
+  'LICENSE',
+  'NOTICE'
 )
 
 $temp = Join-Path $env:TEMP ("youtube-filler-package-" + [guid]::NewGuid().ToString('N'))

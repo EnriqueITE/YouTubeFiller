@@ -135,6 +135,26 @@
     return true;
   }
 
+  function refreshYouTubeLayoutAfterRestore() {
+    const refresh = () => {
+      const player = getPlayer();
+      const video = getVideo();
+      const layoutTarget = player || video || document.documentElement;
+
+      if (layoutTarget) {
+        void layoutTarget.getBoundingClientRect();
+      }
+
+      window.dispatchEvent(new Event("resize"));
+    };
+
+    refresh();
+
+    const schedule = window.requestAnimationFrame || ((callback) => window.setTimeout(callback, 16));
+    schedule(refresh);
+    window.setTimeout(refresh, 120);
+  }
+
   function disableCoverMode() {
     const root = getRootElement();
 
@@ -144,6 +164,7 @@
 
     unmarkActiveElements();
     setButtonState(false);
+    refreshYouTubeLayoutAfterRestore();
   }
 
   function toggleCoverMode() {

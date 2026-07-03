@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.7 - 2026-07-03
+
+- Refreshed YouTube layout after exiting cover mode to prevent shifted player placement.
+- Added a project NOTICE file and included license notices in store packages.
+
 ## 0.4.6 - 2026-07-03
 
 - Kept public author/contact/support details while removing local machine paths from packaged output.

@@ -72,6 +72,6 @@ Enrique Serrano Aparicio
 
 ## License
 
-YouTube Filler is free software licensed under the GNU General Public License v3.0 only. See [LICENSE](LICENSE).
+YouTube Filler is free software licensed under the GNU General Public License v3.0 only. See [LICENSE](LICENSE) for the standard GPL terms and [NOTICE](NOTICE) for the project copyright notice.
 
 Copyright (C) 2026 Enrique Serrano Aparicio. This program comes with ABSOLUTELY NO WARRANTY. You are welcome to redistribute it under the conditions of the GNU GPL v3.0.
