@@ -24,7 +24,7 @@ The extension developer does not receive this setting.
 
 ## Network Requests
 
-YouTube Filler does not make network requests to external servers during normal use. It only modifies the local YouTube page while you are watching a normal YouTube video. The popup includes an optional external support link. Opening that link is a user-initiated action and leaves the extension.
+YouTube Filler does not make network requests to external servers. It only modifies the local YouTube page while you are watching a normal YouTube video. The popup includes an optional external support link to Buy Me a Coffee. Opening that link is a user-initiated action and leaves the extension.
 
 ## Permissions
 

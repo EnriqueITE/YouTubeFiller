@@ -62,7 +62,7 @@ See [PRIVACY.md](PRIVACY.md) for the full privacy policy.
 
 ## Support
 
-Issues and feature requests are handled through GitHub Issues. Optional support is available from the extension popup.
+Issues and feature requests are handled through GitHub Issues. The extension popup also includes an optional support link: [Buy me a coffee](https://buymeacoffee.com/enriqueite).
 
 Contact: hello@enriqueite.com
 
