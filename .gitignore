@@ -12,5 +12,18 @@ Thumbs.db
 *.log
 *.tmp
 
+# Local secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.*
+*.secret
+credentials.json
+client_secret*.json
+service-account*.json
+
 # Local publishing drafts
 STORE_LISTING.md
