@@ -61,7 +61,13 @@
   "statusInvalid": {
     "message": "Press a normal key or a combination with Ctrl, Alt or Shift."
   },
-  "coffeeLink": {
+  "supportFreeMessage": {
+    "message": "100% free and no signup."
+  },
+  "supportHelpMessage": {
+    "message": "Support my extensions."
+  },
+  "supportCoffeeButton": {
     "message": "Buy me a coffee"
   },
   "shortcutGlobalHelp": {

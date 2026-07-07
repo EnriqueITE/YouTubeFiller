@@ -28,6 +28,7 @@ $include = @(
   'options.css',
   'options.js',
   '_locales',
+  'assets\bmc-logo.png',
   'icons',
   'LICENSE',
   'NOTICE'
@@ -42,6 +43,8 @@ try {
     if (Test-Path $source -PathType Container) {
       Copy-Item -LiteralPath $source -Destination $target -Recurse
     } else {
+      $targetParent = Split-Path -Parent $target
+      New-Item -ItemType Directory -Force -Path $targetParent | Out-Null
       Copy-Item -LiteralPath $source -Destination $target
     }
   }
