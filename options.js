@@ -9,7 +9,35 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 const STORAGE_KEY = "customShortcut";
+const SHORTCUT_UPDATED_MESSAGE = "YT_WINDOW_COVER_SHORTCUT_UPDATED";
 const DEFAULT_CUSTOM_SHORTCUT = "\u00ba";
+const DEFAULT_SHORTCUT_DEFINITION = {
+  label: DEFAULT_CUSTOM_SHORTCUT,
+  key: DEFAULT_CUSTOM_SHORTCUT,
+  code: "Backquote",
+  ctrlKey: false,
+  altKey: false,
+  shiftKey: false,
+  metaKey: false
+};
+const MODIFIER_KEYS = ["Control", "Shift", "Alt", "Meta"];
+const RESERVED_SHORTCUTS = new Set([
+  "Ctrl+L",
+  "Ctrl+N",
+  "Ctrl+R",
+  "Ctrl+T",
+  "Ctrl+W",
+  "Ctrl+Shift+N",
+  "Ctrl+Shift+T",
+  "Alt+Left",
+  "Alt+Right",
+  "Alt+F4",
+  "Meta+L",
+  "Meta+N",
+  "Meta+R",
+  "Meta+T",
+  "Meta+W"
+]);
 
 const display = document.getElementById("shortcut-display");
 const recordButton = document.getElementById("record-shortcut");
@@ -65,7 +93,7 @@ function normalizeKey(key) {
 function shortcutFromEvent(event) {
   const key = normalizeKey(event.key);
 
-  if (!key || ["Control", "Shift", "Alt", "Meta"].includes(key)) {
+  if (!key || MODIFIER_KEYS.includes(key)) {
     return "";
   }
 
@@ -91,8 +119,52 @@ function shortcutFromEvent(event) {
   return parts.join("+");
 }
 
+function shortcutDefinitionFromEvent(event) {
+  const label = shortcutFromEvent(event);
+
+  if (!label) {
+    return null;
+  }
+
+  return {
+    label,
+    key: event.key || "",
+    code: event.code || "",
+    ctrlKey: Boolean(event.ctrlKey),
+    altKey: Boolean(event.altKey),
+    shiftKey: Boolean(event.shiftKey),
+    metaKey: Boolean(event.metaKey)
+  };
+}
+
+function shortcutLabel(shortcut) {
+  if (!shortcut) {
+    return DEFAULT_CUSTOM_SHORTCUT;
+  }
+
+  if (typeof shortcut === "string") {
+    return shortcut || DEFAULT_CUSTOM_SHORTCUT;
+  }
+
+  if (typeof shortcut === "object" && typeof shortcut.label === "string" && shortcut.label) {
+    return shortcut.label;
+  }
+
+  return DEFAULT_CUSTOM_SHORTCUT;
+}
+
+function warningForShortcut(shortcut) {
+  const label = shortcutLabel(shortcut);
+
+  if (RESERVED_SHORTCUTS.has(label)) {
+    return text("statusUnreliable", "Saved: $1. This shortcut may be reserved by the browser.", [label]);
+  }
+
+  return "";
+}
+
 function showShortcut(shortcut) {
-  display.value = shortcut || DEFAULT_CUSTOM_SHORTCUT;
+  display.value = shortcutLabel(shortcut);
 }
 
 function setStatus(message) {
@@ -108,19 +180,38 @@ function setRecording(value) {
   setStatus(recording ? text("statusWaiting", "Waiting for keys...") : "");
 }
 
-function saveShortcut(shortcut) {
+function notifyShortcutUpdated(shortcut) {
+  try {
+    if (typeof chrome === "undefined" || !chrome.runtime || !chrome.runtime.sendMessage) {
+      return;
+    }
+
+    chrome.runtime.sendMessage({
+      type: SHORTCUT_UPDATED_MESSAGE,
+      shortcut
+    }, () => {
+      void chrome.runtime.lastError;
+    });
+  } catch (_error) {
+    // Storage remains the source of truth if direct tab notification is unavailable.
+  }
+}
+
+function saveShortcut(shortcut, reset) {
   chrome.storage.sync.set({ [STORAGE_KEY]: shortcut }, () => {
     showShortcut(shortcut);
-    setStatus(shortcut
-      ? text("statusSaved", "Saved: $1", [shortcut])
-      : text("statusCleared", "Shortcut reset to default."));
+    const warning = warningForShortcut(shortcut);
+    setStatus(reset
+      ? text("statusCleared", "Shortcut reset to default.")
+      : warning || text("statusSaved", "Saved: $1", [shortcutLabel(shortcut)]));
+    notifyShortcutUpdated(shortcut);
   });
 }
 
 applyTranslations();
 
-chrome.storage.sync.get({ [STORAGE_KEY]: DEFAULT_CUSTOM_SHORTCUT }, (items) => {
-  showShortcut(String(items[STORAGE_KEY] || DEFAULT_CUSTOM_SHORTCUT));
+chrome.storage.sync.get({ [STORAGE_KEY]: DEFAULT_SHORTCUT_DEFINITION }, (items) => {
+  showShortcut(items[STORAGE_KEY] || DEFAULT_SHORTCUT_DEFINITION);
 });
 
 recordButton.addEventListener("click", () => {
@@ -130,7 +221,7 @@ recordButton.addEventListener("click", () => {
 
 clearButton.addEventListener("click", () => {
   setRecording(false);
-  saveShortcut(DEFAULT_CUSTOM_SHORTCUT);
+  saveShortcut(DEFAULT_SHORTCUT_DEFINITION, true);
 });
 
 document.addEventListener("keydown", (event) => {
@@ -147,7 +238,7 @@ document.addEventListener("keydown", (event) => {
     return;
   }
 
-  const shortcut = shortcutFromEvent(event);
+  const shortcut = shortcutDefinitionFromEvent(event);
 
   if (!shortcut) {
     setStatus(text("statusInvalid", "Press a normal key or a combination with Ctrl, Alt or Shift."));

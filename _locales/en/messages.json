@@ -36,7 +36,7 @@
     "message": "Reset"
   },
   "shortcutHelp": {
-    "message": "Default: º, the key left of 1 on Spanish keyboards. On other layouts, record a shortcut here."
+    "message": "Default: º, the key left of 1 on Spanish keyboards. On other layouts, record a YouTube-only shortcut here."
   },
   "unconfigured": {
     "message": "Default"
@@ -71,6 +71,14 @@
     "message": "Buy me a coffee"
   },
   "shortcutGlobalHelp": {
-    "message": "Works only while the YouTube tab has focus. For a system-wide shortcut, set the browser command to Global in chrome://extensions/shortcuts or brave://extensions/shortcuts."
+    "message": "The recorder changes only the YouTube tab shortcut. For a system-wide shortcut, set the browser command to Global in chrome://extensions/shortcuts or brave://extensions/shortcuts."
+  },
+  "statusUnreliable": {
+    "message": "Saved: $SHORTCUT$. This shortcut may be reserved by the browser, so it might not reach YouTube.",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1"
+      }
+    }
   }
 }

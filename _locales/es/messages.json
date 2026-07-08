@@ -36,7 +36,7 @@
     "message": "Restablecer"
   },
   "shortcutHelp": {
-    "message": "Por defecto: º, la tecla a la izquierda del 1 en teclados españoles. En otras distribuciones, graba otro atajo aquí."
+    "message": "Por defecto: º, la tecla a la izquierda del 1 en teclados españoles. En otras distribuciones, graba aquí un atajo solo para YouTube."
   },
   "unconfigured": {
     "message": "Por defecto"
@@ -71,6 +71,14 @@
     "message": "Invítame a un café"
   },
   "shortcutGlobalHelp": {
-    "message": "Solo funciona con la pestaña de YouTube enfocada. Para un atajo global, configura el comando del navegador como Global en chrome://extensions/shortcuts o brave://extensions/shortcuts."
+    "message": "El grabador solo cambia el atajo de la pestaña de YouTube. Para un atajo global, configura el comando del navegador como Global en chrome://extensions/shortcuts o brave://extensions/shortcuts."
+  },
+  "statusUnreliable": {
+    "message": "Guardado: $SHORTCUT$. El navegador puede reservar este atajo, así que quizá no llegue a YouTube.",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1"
+      }
+    }
   }
 }

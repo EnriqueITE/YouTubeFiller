@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.11 - 2026-07-08
+
+- Applied newly recorded shortcuts to the active YouTube tab immediately, without requiring a page refresh.
+
+## 0.4.10 - 2026-07-08
+
+- Saved recorded shortcuts with physical key codes so they keep working on YouTube after recording.
+- Kept compatibility with existing string-based shortcut settings.
+- Clarified that the popup recorder changes the YouTube-only shortcut, not the browser global command.
+- Fixed corrupted UTF-8 text in shipped fallback and locale strings.
+
 ## 0.4.9 - 2026-07-03
 
 - Split the popup shortcut help into shorter, clearer lines.

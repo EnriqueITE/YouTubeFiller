@@ -14,11 +14,22 @@
   const PLAYER_CLASS = "yt-window-cover-player";
   const VIDEO_CLASS = "yt-window-cover-video";
   const TOGGLE_MESSAGE = "TOGGLE_YT_WINDOW_COVER";
+  const SHORTCUT_UPDATED_MESSAGE = "YT_WINDOW_COVER_SHORTCUT_UPDATED";
   const STORAGE_KEY = "customShortcut";
   const DEFAULT_CUSTOM_SHORTCUT = "\u00ba";
+  const DEFAULT_SHORTCUT_DEFINITION = {
+    label: DEFAULT_CUSTOM_SHORTCUT,
+    key: DEFAULT_CUSTOM_SHORTCUT,
+    code: "Backquote",
+    ctrlKey: false,
+    altKey: false,
+    shiftKey: false,
+    metaKey: false
+  };
+  const MODIFIER_KEYS = ["Control", "Shift", "Alt", "Meta"];
 
   let syncQueued = false;
-  let customShortcut = DEFAULT_CUSTOM_SHORTCUT;
+  let customShortcut = DEFAULT_SHORTCUT_DEFINITION;
 
   function text(messageName, fallback, substitutions) {
     try {
@@ -67,8 +78,24 @@
       || document.querySelector(".ytp-right-controls");
   }
 
+  function shortcutLabel(shortcut) {
+    if (!shortcut) {
+      return DEFAULT_CUSTOM_SHORTCUT;
+    }
+
+    if (typeof shortcut === "string") {
+      return shortcut || DEFAULT_CUSTOM_SHORTCUT;
+    }
+
+    if (typeof shortcut === "object" && typeof shortcut.label === "string" && shortcut.label) {
+      return shortcut.label;
+    }
+
+    return DEFAULT_CUSTOM_SHORTCUT;
+  }
+
   function getShortcutLabel() {
-    return customShortcut || DEFAULT_CUSTOM_SHORTCUT;
+    return shortcutLabel(customShortcut);
   }
 
   function setButtonState(active) {
@@ -337,7 +364,7 @@
   function shortcutFromEvent(event) {
     const key = normalizeKey(event.key);
 
-    if (!key || ["Control", "Shift", "Alt", "Meta"].includes(key)) {
+    if (!key || MODIFIER_KEYS.includes(key)) {
       return "";
     }
 
@@ -363,12 +390,55 @@
     return parts.join("+");
   }
 
-  function isShortcutMatch(event) {
-    if (customShortcut === DEFAULT_CUSTOM_SHORTCUT && event.code === "Backquote" && !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey) {
+  function sameModifiers(shortcut, event) {
+    return Boolean(shortcut.ctrlKey) === Boolean(event.ctrlKey)
+      && Boolean(shortcut.altKey) === Boolean(event.altKey)
+      && Boolean(shortcut.shiftKey) === Boolean(event.shiftKey)
+      && Boolean(shortcut.metaKey) === Boolean(event.metaKey);
+  }
+
+  function isDefaultShortcut(shortcut) {
+    if (shortcut === DEFAULT_CUSTOM_SHORTCUT) {
       return true;
     }
 
-    return shortcutFromEvent(event) === customShortcut;
+    return Boolean(shortcut
+      && typeof shortcut === "object"
+      && shortcut.code === "Backquote"
+      && shortcutLabel(shortcut) === DEFAULT_CUSTOM_SHORTCUT
+      && !shortcut.ctrlKey
+      && !shortcut.altKey
+      && !shortcut.shiftKey
+      && !shortcut.metaKey);
+  }
+
+  function structuredShortcutMatches(event, shortcut) {
+    if (!shortcut || typeof shortcut !== "object" || !sameModifiers(shortcut, event)) {
+      return false;
+    }
+
+    if (shortcut.code && event.code === shortcut.code) {
+      return true;
+    }
+
+    const savedKey = normalizeKey(shortcut.key);
+    return Boolean(savedKey && shortcutFromEvent(event) === shortcutLabel(shortcut) && normalizeKey(event.key) === savedKey);
+  }
+
+  function isShortcutMatch(event) {
+    if (isDefaultShortcut(customShortcut) && event.code === "Backquote" && !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey) {
+      return true;
+    }
+
+    if (structuredShortcutMatches(event, customShortcut)) {
+      return true;
+    }
+
+    if (typeof customShortcut === "string") {
+      return shortcutFromEvent(event) === customShortcut;
+    }
+
+    return shortcutFromEvent(event) === shortcutLabel(customShortcut);
   }
 
   function handleKeydown(event) {
@@ -392,15 +462,19 @@
     event.stopPropagation();
   }
 
+  function applyShortcutSetting(shortcut) {
+    customShortcut = shortcut || DEFAULT_SHORTCUT_DEFINITION;
+    setButtonState(isActive());
+  }
+
   function loadSettings() {
     try {
       if (typeof chrome === "undefined" || !chrome.storage || !chrome.storage.sync) {
         return;
       }
 
-      chrome.storage.sync.get({ [STORAGE_KEY]: DEFAULT_CUSTOM_SHORTCUT }, (items) => {
-        customShortcut = String(items && items[STORAGE_KEY] || DEFAULT_CUSTOM_SHORTCUT);
-        setButtonState(isActive());
+      chrome.storage.sync.get({ [STORAGE_KEY]: DEFAULT_SHORTCUT_DEFINITION }, (items) => {
+        applyShortcutSetting(items && items[STORAGE_KEY]);
       });
 
       if (chrome.storage.onChanged && chrome.storage.onChanged.addListener) {
@@ -409,12 +483,11 @@
             return;
           }
 
-          customShortcut = String(changes[STORAGE_KEY].newValue || DEFAULT_CUSTOM_SHORTCUT);
-          setButtonState(isActive());
+          applyShortcutSetting(changes[STORAGE_KEY].newValue);
         });
       }
     } catch (_error) {
-      customShortcut = DEFAULT_CUSTOM_SHORTCUT;
+      customShortcut = DEFAULT_SHORTCUT_DEFINITION;
     }
   }
 
@@ -425,7 +498,17 @@
       }
 
       chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-        if (!message || message.type !== TOGGLE_MESSAGE) {
+        if (!message) {
+          return false;
+        }
+
+        if (message.type === SHORTCUT_UPDATED_MESSAGE) {
+          applyShortcutSetting(message.shortcut);
+          sendResponse({ handled: true });
+          return false;
+        }
+
+        if (message.type !== TOGGLE_MESSAGE) {
           return false;
         }
 
